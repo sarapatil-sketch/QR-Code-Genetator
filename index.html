@@ -1,41 +1,221 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#081225">
+    <title>QR Studio | QR Code Generator</title>
     <link rel="stylesheet" href="style.css">
-    <title>QR Code Generator | Code Traversal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="box">
-        <div class="qr-header">
-            <h1>Generate QR Code</h1>
-            <input type="text" placeholder="Type your text or URL" id="qr-text">
-            <div>
-            <label for="sizes">Select Size:</label>
-            <select id="sizes">
-                <option value="100">100x100</option>
-                <option value="200">200x200</option>
-                <option value="300">300x300</option>
-                <option value="400">400x400</option>
-                <option value="500">500x500</option>
-                <option value="600">600x600</option>
-                <option value="700">700x700</option>
-                <option value="800">800x800</option>
-                <option value="900">900x900</option>
-                <option value="1000">1000x1000</option>
-            </select>
-        </div>
-        </div>
-        <div class="qr-body"></div>
-        <div class="qr-footer">
-            <a href="" id="generateBtn">Generate</a>
-            <a href="" id="downloadBtn" download="QR_Code.png">Download</a>
-        </div>
-    </div>
 
-    <script src="script.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<div class="app">
+    <aside class="sidebar">
+        <a class="brand" href="#" data-page="home">
+            <span class="brand-icon">▦</span>
+            <span>QR<span class="brand-accent">Studio</span></span>
+        </a>
+
+        <p class="nav-label">WORKSPACE</p>
+        <nav>
+            <a href="#" class="nav-link active" data-page="home">⌂ <span>Dashboard</span></a>
+            <a href="#" class="nav-link" data-page="history">◷ <span>History</span></a>
+            <a href="#" class="nav-link" data-page="about">ⓘ <span>About Project</span></a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="sidebar-art">▦</div>
+            <h3>Scan. Share. Connect.</h3>
+            <p>Create QR codes for your links, text and more.</p>
+            <span class="version">QR Studio · v1.0</span>
+        </div>
+    </aside>
+
+    <main class="main">
+        <header class="topbar">
+            <div>
+                <p class="eyebrow">YOUR CREATIVE WORKSPACE</p>
+                <h2 id="pageTitle">QR Code Dashboard</h2>
+            </div>
+            <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">☾</button>
+        </header>
+
+        <section class="page-section" id="homePage">
+            <section class="hero">
+                <div class="hero-content">
+                    <span class="hero-tag">✦ SIMPLE. SMART. INSTANT.</span>
+                    <h1>Create your<br>QR code <span>in seconds.</span></h1>
+                    <p>Transform any link or text into a scannable QR code. Fast, easy and completely free.</p>
+                    <a href="#workspace" class="hero-btn">Start Creating <span>→</span></a>
+                </div>
+                <div class="hero-graphic">
+                    <div class="orbit orbit-one"></div>
+                    <div class="orbit orbit-two"></div>
+                    <div class="hero-qr">▦</div>
+                    <span class="spark spark-one">✦</span>
+                    <span class="spark spark-two">✧</span>
+                </div>
+            </section>
+
+            <div class="section-heading" id="workspace">
+                <div>
+                    <h2>QR Code Generator</h2>
+                    <p>Customize your QR code to match your needs.</p>
+                </div>
+                <span class="status"><span></span> Ready to create</span>
+            </div>
+
+            <section class="workspace">
+                <div class="panel form-panel">
+                    <div class="panel-title">
+                        <span class="title-icon">↗</span>
+                        <div>
+                            <h3>Configure your QR</h3>
+                            <p>Enter your content and customize it.</p>
+                        </div>
+                    </div>
+
+                    <label for="qr-text">Your content</label>
+                    <div class="input-wrap">
+                        <span>⌁</span>
+                        <input type="text" id="qr-text" placeholder="https://example.com" autocomplete="off">
+                    </div>
+                    <p class="hint">Enter a website URL, text or other information.</p>
+
+                    <label>Content type</label>
+                    <div class="type-grid">
+                        <button class="type-btn selected" data-type="url">↗<span>URL</span></button>
+                        <button class="type-btn" data-type="text">T<span>Text</span></button>
+                        <button class="type-btn" data-type="email">✉<span>Email</span></button>
+                        <button class="type-btn" data-type="phone">☎<span>Phone</span></button>
+                    </div>
+
+                    <label for="sizes">QR code size</label>
+                    <select id="sizes">
+                        <option value="150">150 × 150 — Small</option>
+                        <option value="200">200 × 200 — Medium</option>
+                        <option value="300" selected>300 × 300 — Recommended</option>
+                        <option value="400">400 × 400 — Large</option>
+                        <option value="500">500 × 500 — Extra large</option>
+                        <option value="600">600 × 600 — High resolution</option>
+                        <option value="800">800 × 800 — Maximum detail</option>
+                        <option value="1000">1000 × 1000 — Maximum size</option>
+                    </select>
+
+                    <details class="advanced">
+                        <summary>⚙ Advanced customization <span>⌄</span></summary>
+                        <div class="color-grid">
+                            <div>
+                                <label for="darkColor">QR color</label>
+                                <input type="color" id="darkColor" value="#111827">
+                            </div>
+                            <div>
+                                <label for="lightColor">Background color</label>
+                                <input type="color" id="lightColor" value="#ffffff">
+                            </div>
+                        </div>
+                    </details>
+
+                    <div class="action-row">
+                        <button id="generateBtn" class="primary-btn">▦ Generate QR Code</button>
+                        <button id="clearBtn" class="secondary-btn">↻ Clear</button>
+                    </div>
+                    <p id="message" class="message" role="status" aria-live="polite"></p>
+                </div>
+
+                <div class="panel preview-panel">
+                    <div class="panel-title">
+                        <span class="title-icon">▦</span>
+                        <div>
+                            <h3>Your QR code</h3>
+                            <p>Your generated code will appear here.</p>
+                        </div>
+                    </div>
+
+                    <div class="qr-stage">
+                        <div id="qr-placeholder">
+                            <span class="placeholder-icon">▦</span>
+                            <p>Your QR code awaits</p>
+                            <small>Enter content and click Generate</small>
+                        </div>
+                        <div id="qr-output" aria-label="Generated QR code"></div>
+                    </div>
+
+                    <div class="preview-meta">
+                        <span>Output size</span>
+                        <strong id="sizeLabel">300 × 300 px</strong>
+                    </div>
+
+                    <button id="downloadBtn" class="download-btn" disabled>↓ Download PNG</button>
+                    <p class="privacy-note">♧ Your content is processed in your browser.</p>
+                </div>
+            </section>
+
+            <section class="features">
+                <article class="feature-card">
+                    <span class="feature-icon purple">ϟ</span>
+                    <h3>Quick & Easy</h3>
+                    <p>Generate QR codes in seconds with a simple interface.</p>
+                </article>
+                <article class="feature-card">
+                    <span class="feature-icon blue">✦</span>
+                    <h3>Completely Free</h3>
+                    <p>No account or subscription required.</p>
+                </article>
+                <article class="feature-card">
+                    <span class="feature-icon green">▣</span>
+                    <h3>Responsive Design</h3>
+                    <p>Works on desktops, tablets and mobile devices.</p>
+                </article>
+                <article class="feature-card">
+                    <span class="feature-icon pink">♡</span>
+                    <h3>Privacy Friendly</h3>
+                    <p>Your content stays in your browser in this app.</p>
+                </article>
+            </section>
+        </section>
+
+        <section class="page-section extra-page" id="historyPage" hidden>
+            <div class="section-heading">
+                <div>
+                    <h2>Recent QR Codes</h2>
+                    <p>Revisit your recently generated QR codes.</p>
+                </div>
+                <button id="clearHistoryBtn" class="secondary-btn">Clear History</button>
+            </div>
+            <div class="panel history-panel" id="historyList">
+                <p class="empty-history">No history yet. Generate your first QR code!</p>
+            </div>
+        </section>
+
+        <section class="page-section extra-page" id="aboutPage" hidden>
+            <div class="panel about-panel">
+                <span class="feature-icon purple">▦</span>
+                <h1>About QR Studio</h1>
+                <p>A beginner-friendly web application that converts text, URLs, email addresses and phone numbers into QR codes.</p>
+                <h3>Technologies Used</h3>
+                <div class="tech-tags">
+                    <span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>QRCode.js</span>
+                </div>
+                <h3>Project Highlights</h3>
+                <ul>
+                    <li>Generate QR codes in multiple sizes.</li>
+                    <li>Customize foreground and background colors.</li>
+                    <li>Download QR codes as PNG images.</li>
+                    <li>View recent QR codes from local browser history.</li>
+                    <li>Switch between dark and light themes.</li>
+                </ul>
+            </div>
+        </section>
+
+        <footer>Made with <span>♥</span> for learning and creating · QR Studio</footer>
+    </main>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
